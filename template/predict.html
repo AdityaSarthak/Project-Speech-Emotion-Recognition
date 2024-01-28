@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Emotion Recognition</title>
+</head>
+<style>
+     body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image:url("https://t4.ftcdn.net/jpg/04/12/13/39/360_F_412133963_alCDCpRdQluI1paz1QZ8qynWff7oFUqg.jpg") ;
+            background-size: cover;
+            background-repeat: no-repeat;
+            /* background-blend-mode: lighten; */
+        }
+        section {
+            margin-bottom: 20px;
+        }
+header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            width: 100%;
+        }
+        main {
+            padding: 20px;
+            flex-grow: 1;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #audioInput {
+            margin-top: 20px;
+            width: 90%;
+            height: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #Audio-select{
+            cursor: pointer;
+            /* background-color: white; */
+            border: 2px;
+            border-color: azure;
+            border-radius: 5px;
+            margin: 2px;
+            padding: 2px;
+            font-size: x-large;
+            width: 100%;
+            /* height:50%; */
+        }
+        #name-button{
+            cursor: pointer;
+            /* background-color: white; */
+            border: 2px;
+            border-radius: 5px;
+            margin: 2px;
+            padding: 2px;
+            font-size: x-large;
+            
+        }
+        #formData{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background-color: antiquewhite; */
+            width: 100%;
+            height:200px;
+            border-color: aquamarine;
+        }
+
+
+</style>
+<body>
+    <header>
+        <h1>Speech Emotion Recognition</h1>
+    </header>
+    <main>
+        <section id=audioInput>
+    <form id="formData" action="predict" method="POST" enctype="multipart/form-data">
+    <input id="Audio-select" type="file" name="audio" onchange="previewFile()"/>
+    <button id="name-button">Submit</button>
+    <audio id="selected-audio" src=""></audio>
+    </section>
+    </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Speech Emotion Recognition</p>
+    </footer>
+
+
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        
+        var exInput = document.getElementById('Audio-select')
+        exInput.setAttribute('value', 'jsArrayYouHaveAlreadyDefined')
+        document.getElementById('exampleForm').submit()
+        $("#name-button").click(function(event){
+            let message={
+                Audio:$("#Audio-select").val()
+            }
+            $.post("http://127.0.0.1:5000/predict",JSON.stringify(message),function(response){
+                $("#greeting").text(response.greeting);
+                console.log(response)
+            });
+        });
+    </script>
+</body>
+</html>

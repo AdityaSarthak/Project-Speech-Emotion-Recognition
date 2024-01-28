@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting</title>
+</head>
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image:url("https://t4.ftcdn.net/jpg/04/12/13/39/360_F_412133963_alCDCpRdQluI1paz1QZ8qynWff7oFUqg.jpg") ;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            width: 100%;
+}
+main {
+            padding: 20px;
+            flex-grow: 1;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+.DataRes{
+    color: white;
+    font-size: xx-large;
+}
+
+</style>
+<body>
+    <header>
+        <h1>Speech Emotion Recognition</h1>
+    </header>
+    <main>
+    <section id="Result">
+    <h1 class="DataRes">The Predicted Emotion:</h1>
+    <h1 id="pred" class="DataRes">{{data}}</h1>
+    </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Speech Emotion Recognition</p>
+
+    </footer>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        $("#name-button").click(function(event){
+            let message={
+                name:$("#name-input").val()
+            }
+            $.post("http://127.0.0.1:5000",JSON.stringify(message),function(response){
+                $("#greeting").text(response.greeting);
+                console.log(response)
+            });
+        });
+    </script>
+</body>
+</html>
