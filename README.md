@@ -37,3 +37,16 @@ Pandas
 Flask
 
 
+HOW TO RUN THE APP:
+
+Clone the repository using:
+git clone https://github.com/AdityaSarthak/Project-Speech-Emotion-Recognition/
+
+Install required dependencies:
+pip install -r requirements.txt
+
+Host the server:
+Run the python app predict_app.py
+
+Visit the link appearing on the terminal and upload the required file and click Submit.
+The website shall predict the emotion of speech.
